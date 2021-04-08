@@ -12,7 +12,7 @@ type Config struct {
 	Port            string `env:"PG_PORT" envDefault:"5432"`
 	User            string `env:"PG_USER" envDefault:"postgres"`
 	Password        string `env:"PG_PASSWORD" envDefault:"devtronpg"`
-	Database        string `env:"PG_DATABASE" envDefault:"telemetry-telemetry-analytics"`
+	Database        string `env:"PG_DATABASE" envDefault:"telemetry-user-analytics"`
 	ApplicationName string `env:"APP" envDefault:"telemetry-telemetry-analytics"`
 	LogQuery        bool   `env:"PG_LOG_QUERY" envDefault:"true"`
 }

@@ -69,18 +69,16 @@ type ResetRequest struct {
 
 func (impl *RestHandlerImpl) TelemetryEventReceiver(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
-	var telemetryEvent common.TelemetryEvent
+	var telemetryEvent common.TelemetryUserAnalyticsDto
 	err := decoder.Decode(&telemetryEvent)
 	if err != nil {
 		impl.logger.Errorw("error in decode request", "error", err)
 		writeJsonResp(w, err, nil, http.StatusBadRequest)
 		return
 	}
-	if telemetryEvent.UserId == 0 {
-		telemetryEvent.UserId = 1
-	}
-	impl.logger.Infow("req", "req", telemetryEvent)
-	result, err := impl.telemetryEventService.GetAll()
+
+	impl.logger.Infow("req received for telemetry event", "req", telemetryEvent)
+	result, err := impl.telemetryEventService.CreatePlatform(&telemetryEvent)
 	if err != nil {
 		impl.logger.Errorw("err in process msg", "err", err)
 		impl.writeJsonResp(w, err, nil, http.StatusInternalServerError)

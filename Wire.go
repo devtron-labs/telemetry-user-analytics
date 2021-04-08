@@ -28,8 +28,10 @@ func InitializeApp() (*App, error) {
 
 		telemetry.NewTelemetryEventServiceImpl,
 		wire.Bind(new(telemetry.TelemetryEventService), new(*telemetry.TelemetryEventServiceImpl)),
-		repository.NewTelemetryEventRepositoryImpl,
-		wire.Bind(new(repository.TelemetryEventRepository), new(*repository.TelemetryEventRepositoryImpl)),
+		repository.NewTelemetryPlatformRepositoryImpl,
+		wire.Bind(new(repository.TelemetryPlatformRepository), new(*repository.TelemetryPlatformRepositoryImpl)),
+		repository.NewTelemetryInstallHistoryRepositoryImpl,
+		wire.Bind(new(repository.TelemetryInstallHistoryRepository), new(*repository.TelemetryInstallHistoryRepositoryImpl)),
 	)
 	return &App{}, nil
 }

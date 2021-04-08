@@ -31,7 +31,7 @@ func (impl *NatSubscriptionImpl) Subscribe() error {
 	_, err := impl.pubSubClient.Conn.QueueSubscribe(client.TOPIC_CI_SCAN, client.TOPIC_CI_SCAN_GRP, func(msg *stan.Msg) {
 		impl.logger.Debugw("received msg", "msg", msg)
 		defer msg.Ack()
-		config := &common.TelemetryEvent{}
+		config := &common.TelemetryUserAnalyticsDto{}
 		err := json.Unmarshal(msg.Data, config)
 		if err != nil {
 			impl.logger.Errorw("err in reading msg", "err", err, "msg", string(msg.Data))

@@ -27,9 +27,10 @@ func InitializeApp() (*App, error) {
 	if err != nil {
 		return nil, err
 	}
-	telemetryEventRepositoryImpl := repository.NewTelemetryEventRepositoryImpl(db)
+	telemetryPlatformRepositoryImpl := repository.NewTelemetryPlatformRepositoryImpl(db)
+	telemetryInstallHistoryRepositoryImpl := repository.NewTelemetryInstallHistoryRepositoryImpl(db)
 	httpClient := logger.NewHttpClient()
-	telemetryEventServiceImpl := telemetry.NewTelemetryEventServiceImpl(sugaredLogger, telemetryEventRepositoryImpl, httpClient)
+	telemetryEventServiceImpl := telemetry.NewTelemetryEventServiceImpl(sugaredLogger, telemetryPlatformRepositoryImpl, telemetryInstallHistoryRepositoryImpl, httpClient)
 	restHandlerImpl := api.NewRestHandlerImpl(sugaredLogger, telemetryEventServiceImpl)
 	muxRouter := api.NewMuxRouter(sugaredLogger, restHandlerImpl)
 	pubSubClient, err := client.NewPubSubClient(sugaredLogger)

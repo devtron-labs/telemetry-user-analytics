@@ -4,23 +4,13 @@ import (
 	"time"
 )
 
-type Event struct {
-	Image        string `json:"image"`
-	ImageDigest  string `json:"imageDigest"`
-	AppId        int    `json:"appId"`
-	EnvId        int    `json:"envId"`
-	PipelineId   int    `json:"pipelineId"`
-	CiArtifactId int    `json:"ciArtifactId"`
-	UserId       int    `json:"userId"`
-	AccessKey    string `json:"accessKey"`
-	SecretKey    string `json:"secretKey"`
-	Token        string `json:"token"`
-}
-
-type TelemetryEvent struct {
-	Id          int32     `json:"id" validate:"number"`
-	UPID        string    `json:"upid"`
-	ActiveSince time.Time `json:"activeSince"`
-	LastActive  time.Time `json:"lastActive"`
-	UserId      int32     `json:"-"` // created or modified telemetry id
+type TelemetryUserAnalyticsDto struct {
+	Id             int32     `json:"id"`
+	UPID           string    `json:"upid"`
+	Timestamp      time.Time `json:"timestamp,omitempty"`
+	EventType      string    `json:"eventType,omitempty"` //startup,normal,frequency
+	ServerVersion  string    `json:"serverVersion"`
+	DevtronVersion string    `json:"devtronVersion"`
+	ActiveSince    time.Time `json:"activeSince,omitempty"`
+	LastActive     time.Time `json:"lastActive,omitempty"`
 }
