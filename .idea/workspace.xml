@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f305bd38-d359-4cbc-8b15-11f3f792a498" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/telemetry/CronService.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/telemetry/CronService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telemetry-user-analytics" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-user-analytics" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,20 +12,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkg/telemetry/CronService.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="47">
-              <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+            <state relative-caret-position="172">
+              <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
-              <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -42,6 +38,11 @@
         <option value="Go File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>vikram</find>
+    </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.14/libexec" />
   <component name="Git.Settings">
@@ -288,17 +289,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
+    <entry file="file://$PROJECT_DIR$/pkg/telemetry/CronService.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+        <state relative-caret-position="172">
+          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/telemetry/CronService.go">
+    <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

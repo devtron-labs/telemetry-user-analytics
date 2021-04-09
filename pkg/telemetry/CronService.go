@@ -70,7 +70,7 @@ func (impl *CronServiceImpl) Process() {
 				failureCount = failureCount + 1
 			}
 
-			if platform.ModifiedOn.After(dateGap) && platform.ModifiedOn.IsZero() {
+			if platform.ModifiedOn.After(dateGap) {
 				activeCount = activeCount + 1
 			}
 		}
