@@ -43,16 +43,22 @@ func (impl *CronServiceImpl) Process() {
 	}
 	if err == pg.ErrNoRows {
 		modelHistory := &repository.PlatformInstallHistory{}
-		modelHistory.InstallCount = 1
-		modelHistory.SuccessCount = 1
-		modelHistory.FailCount = 0
-		modelHistory.ActivePlatform = 1
+		//modelHistory.InstallCount = 1
+		//modelHistory.SuccessCount = 1
+		//modelHistory.FailCount = 0
+		//modelHistory.ActivePlatform = 1
 		modelHistory, err = impl.telemetryInstallHistoryRepository.CreatePlatformHistory(modelHistory)
 		if err != nil {
 			impl.logger.Errorw("error while fetching telemetry from db", "error", err)
 			return
 		}
 	} else {
+
+		// find out total platform, set into install count
+		// find out total platform which are created by last 1 hour but not having modified date, to set into failure count
+		// find out total platform which are modified date, set into success count
+		// find out total platform which are modified since last 1 day, set into active account
+
 		modelHistory.InstallCount = modelHistory.InstallCount + 1
 		modelHistory.ActivePlatform = modelHistory.ActivePlatform + 1
 		modelHistory.SuccessCount = modelHistory.SuccessCount + 1
