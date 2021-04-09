@@ -36,31 +36,31 @@ type PlatformInstallHistory struct {
 	ActivePlatform int      `sql:"active_platform"`
 }
 
-func (impl TelemetryInstallHistoryRepositoryImpl) CreatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error) {
+func (impl *TelemetryInstallHistoryRepositoryImpl) CreatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error) {
 	err := impl.dbConnection.Insert(model)
 	if err != nil {
 		return model, err
 	}
 	return model, nil
 }
-func (impl TelemetryInstallHistoryRepositoryImpl) UpdatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error) {
+func (impl *TelemetryInstallHistoryRepositoryImpl) UpdatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error) {
 	err := impl.dbConnection.Update(model)
 	if err != nil {
 		return model, err
 	}
 	return model, nil
 }
-func (impl TelemetryInstallHistoryRepositoryImpl) GetById(id int) (*PlatformInstallHistory, error) {
+func (impl *TelemetryInstallHistoryRepositoryImpl) GetById(id int) (*PlatformInstallHistory, error) {
 	var model PlatformInstallHistory
 	err := impl.dbConnection.Model(&model).Where("id = ?", id).Select()
 	return &model, err
 }
-func (impl TelemetryInstallHistoryRepositoryImpl) GetByUPID(upid string) (*PlatformInstallHistory, error) {
+func (impl *TelemetryInstallHistoryRepositoryImpl) GetByUPID(upid string) (*PlatformInstallHistory, error) {
 	var model PlatformInstallHistory
 	err := impl.dbConnection.Model(&model).Where("upid = ?", upid).Select()
 	return &model, err
 }
-func (impl TelemetryInstallHistoryRepositoryImpl) GetAll() ([]PlatformInstallHistory, error) {
+func (impl *TelemetryInstallHistoryRepositoryImpl) GetAll() ([]PlatformInstallHistory, error) {
 	var model []PlatformInstallHistory
 	err := impl.dbConnection.Model(&model).Order("updated_on desc").Select()
 	return model, err

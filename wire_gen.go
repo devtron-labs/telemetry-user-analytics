@@ -32,7 +32,8 @@ func InitializeApp() (*App, error) {
 	httpClient := logger.NewHttpClient()
 	telemetryEventServiceImpl := telemetry.NewTelemetryEventServiceImpl(sugaredLogger, telemetryPlatformRepositoryImpl, telemetryInstallHistoryRepositoryImpl, httpClient)
 	restHandlerImpl := api.NewRestHandlerImpl(sugaredLogger, telemetryEventServiceImpl)
-	muxRouter := api.NewMuxRouter(sugaredLogger, restHandlerImpl)
+	cronServiceImpl := telemetry.NewCronServiceImpl(sugaredLogger, telemetryPlatformRepositoryImpl, telemetryInstallHistoryRepositoryImpl, httpClient)
+	muxRouter := api.NewMuxRouter(sugaredLogger, restHandlerImpl, cronServiceImpl)
 	pubSubClient, err := client.NewPubSubClient(sugaredLogger)
 	if err != nil {
 		return nil, err

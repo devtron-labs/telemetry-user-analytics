@@ -25,13 +25,15 @@ func InitializeApp() (*App, error) {
 		wire.Bind(new(api.RestHandler), new(*api.RestHandlerImpl)),
 		client.NewPubSubClient,
 		pubsub.NewNatSubscription,
-
 		telemetry.NewTelemetryEventServiceImpl,
 		wire.Bind(new(telemetry.TelemetryEventService), new(*telemetry.TelemetryEventServiceImpl)),
 		repository.NewTelemetryPlatformRepositoryImpl,
 		wire.Bind(new(repository.TelemetryPlatformRepository), new(*repository.TelemetryPlatformRepositoryImpl)),
 		repository.NewTelemetryInstallHistoryRepositoryImpl,
 		wire.Bind(new(repository.TelemetryInstallHistoryRepository), new(*repository.TelemetryInstallHistoryRepositoryImpl)),
+		telemetry.NewCronServiceImpl,
+		wire.Bind(new(telemetry.CronService), new(*telemetry.CronServiceImpl)),
+
 	)
 	return &App{}, nil
 }

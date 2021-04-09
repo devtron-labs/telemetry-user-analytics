@@ -1,8 +1,6 @@
 package telemetry
 
 import (
-	"bytes"
-	"fmt"
 	"github.com/devtron-labs/telemetry-user-analytics/common"
 	"github.com/devtron-labs/telemetry-user-analytics/internal/sql/repository"
 	"github.com/go-pg/pg"
@@ -34,7 +32,7 @@ func NewTelemetryEventServiceImpl(logger *zap.SugaredLogger, telemetryPlatformRe
 	return serviceImpl
 }
 
-func (impl TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserAnalyticsDto) (*common.TelemetryUserAnalyticsDto, error) {
+func (impl *TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserAnalyticsDto) (*common.TelemetryUserAnalyticsDto, error) {
 	model, err := impl.telemetryPlatformRepository.GetByUPID(dto.UPID)
 	if err != nil && err != pg.ErrNoRows {
 		impl.logger.Errorw("error while fetching telemetry from db", "error", err)
@@ -57,7 +55,6 @@ func (impl TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserAn
 			return nil, err
 		}
 		dto.Id = model.Id
-
 
 		// total install count counter logic
 		modelHistory, err := impl.telemetryInstallHistoryRepository.GetById(1)
@@ -102,7 +99,7 @@ func (impl TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserAn
 	return dto, nil
 }
 
-func (impl TelemetryEventServiceImpl) GetByUPID(upid string) (*common.TelemetryUserAnalyticsDto, error) {
+func (impl *TelemetryEventServiceImpl) GetByUPID(upid string) (*common.TelemetryUserAnalyticsDto, error) {
 	data := &common.TelemetryUserAnalyticsDto{}
 	model, err := impl.telemetryPlatformRepository.GetByUPID(upid)
 	if err != nil {
@@ -115,7 +112,7 @@ func (impl TelemetryEventServiceImpl) GetByUPID(upid string) (*common.TelemetryU
 	return data, nil
 }
 
-func (impl TelemetryEventServiceImpl) GetAll() ([]*common.TelemetryUserAnalyticsDto, error) {
+func (impl *TelemetryEventServiceImpl) GetAll() ([]*common.TelemetryUserAnalyticsDto, error) {
 	model, err := impl.telemetryPlatformRepository.GetAll()
 	if err != nil {
 		impl.logger.Errorw("error while fetching telemetry from db", "error", err)
@@ -130,18 +127,6 @@ func (impl TelemetryEventServiceImpl) GetAll() ([]*common.TelemetryUserAnalytics
 	}
 	if response == nil || len(response) == 0 {
 		response = make([]*common.TelemetryUserAnalyticsDto, 0)
-	}
-
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/triggers", ""), bytes.NewBuffer([]byte("")))
-	if err != nil {
-		impl.logger.Errorw("error while writing test suites", "err", err)
-		return nil, err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	_, err = impl.client.Do(req)
-	if err != nil {
-		impl.logger.Errorw("error while UpdateJiraTransition request ", "err", err)
-		return nil, err
 	}
 
 	return response, nil

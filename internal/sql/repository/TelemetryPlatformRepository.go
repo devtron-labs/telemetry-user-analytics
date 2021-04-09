@@ -38,31 +38,31 @@ type Platform struct {
 	DevtronVersion string    `sql:"devtron_version"`
 }
 
-func (impl TelemetryPlatformRepositoryImpl) CreatePlatform(model *Platform) (*Platform, error) {
+func (impl *TelemetryPlatformRepositoryImpl) CreatePlatform(model *Platform) (*Platform, error) {
 	err := impl.dbConnection.Insert(model)
 	if err != nil {
 		return model, err
 	}
 	return model, nil
 }
-func (impl TelemetryPlatformRepositoryImpl) UpdatePlatform(model *Platform) (*Platform, error) {
+func (impl *TelemetryPlatformRepositoryImpl) UpdatePlatform(model *Platform) (*Platform, error) {
 	err := impl.dbConnection.Update(model)
 	if err != nil {
 		return model, err
 	}
 	return model, nil
 }
-func (impl TelemetryPlatformRepositoryImpl) GetById(id int) (*Platform, error) {
+func (impl *TelemetryPlatformRepositoryImpl) GetById(id int) (*Platform, error) {
 	var model Platform
 	err := impl.dbConnection.Model(&model).Where("id = ?", id).Select()
 	return &model, err
 }
-func (impl TelemetryPlatformRepositoryImpl) GetByUPID(upid string) (*Platform, error) {
+func (impl *TelemetryPlatformRepositoryImpl) GetByUPID(upid string) (*Platform, error) {
 	var model Platform
 	err := impl.dbConnection.Model(&model).Where("upid = ?", upid).Select()
 	return &model, err
 }
-func (impl TelemetryPlatformRepositoryImpl) GetAll() ([]Platform, error) {
+func (impl *TelemetryPlatformRepositoryImpl) GetAll() ([]Platform, error) {
 	var model []Platform
 	err := impl.dbConnection.Model(&model).Order("updated_on desc").Select()
 	return model, err
