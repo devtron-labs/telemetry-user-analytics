@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f305bd38-d359-4cbc-8b15-11f3f792a498" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/telemetry/CronService.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/telemetry/CronService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/telemetry-user-analytics" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-user-analytics" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +19,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pkg/telemetry/CronService.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state relative-caret-position="47">
+              <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -45,8 +58,8 @@
         <option value="$PROJECT_DIR$/internal/sql/repository/TelemetryEventRepository.go" />
         <option value="$PROJECT_DIR$/Wire.go" />
         <option value="$PROJECT_DIR$/api/Router.go" />
-        <option value="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" />
         <option value="$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go" />
+        <option value="$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go" />
         <option value="$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go" />
         <option value="$PROJECT_DIR$/pkg/telemetry/CronService.go" />
       </list>
@@ -141,7 +154,7 @@
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -233,31 +246,10 @@
     <entry file="file://$PROJECT_DIR$/api/apiError.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wire.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="24" column="67" lean-forward="true" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -275,10 +267,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/internal/sql/repository/TelemetryInstallHistoryRepository.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/sql/repository/TelemetryPlatformRepository.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.14/libexec/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="895" column="14" selection-start-line="895" selection-start-column="14" selection-end-line="895" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/telemetry/TelemetryEventService.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/telemetry/CronService.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state relative-caret-position="47">
+          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
         </state>
       </provider>
     </entry>

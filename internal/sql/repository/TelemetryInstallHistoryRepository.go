@@ -13,7 +13,6 @@ type TelemetryInstallHistoryRepository interface {
 	CreatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error)
 	UpdatePlatformHistory(model *PlatformInstallHistory) (*PlatformInstallHistory, error)
 	GetById(id int) (*PlatformInstallHistory, error)
-	GetByUPID(upid string) (*PlatformInstallHistory, error)
 	GetAll() ([]PlatformInstallHistory, error)
 	GetConnection() (dbConnection *pg.DB)
 }
@@ -53,11 +52,6 @@ func (impl *TelemetryInstallHistoryRepositoryImpl) UpdatePlatformHistory(model *
 func (impl *TelemetryInstallHistoryRepositoryImpl) GetById(id int) (*PlatformInstallHistory, error) {
 	var model PlatformInstallHistory
 	err := impl.dbConnection.Model(&model).Where("id = ?", id).Select()
-	return &model, err
-}
-func (impl *TelemetryInstallHistoryRepositoryImpl) GetByUPID(upid string) (*PlatformInstallHistory, error) {
-	var model PlatformInstallHistory
-	err := impl.dbConnection.Model(&model).Where("upid = ?", upid).Select()
 	return &model, err
 }
 func (impl *TelemetryInstallHistoryRepositoryImpl) GetAll() ([]PlatformInstallHistory, error) {

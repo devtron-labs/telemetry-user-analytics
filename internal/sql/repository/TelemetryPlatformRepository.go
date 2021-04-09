@@ -15,7 +15,7 @@ type TelemetryPlatformRepository interface {
 	UpdatePlatform(model *Platform) (*Platform, error)
 	GetById(id int) (*Platform, error)
 	GetByUPID(upid string) (*Platform, error)
-	GetAll() ([]Platform, error)
+	GetAll() ([]*Platform, error)
 	GetConnection() (dbConnection *pg.DB)
 }
 
@@ -62,8 +62,8 @@ func (impl *TelemetryPlatformRepositoryImpl) GetByUPID(upid string) (*Platform, 
 	err := impl.dbConnection.Model(&model).Where("upid = ?", upid).Select()
 	return &model, err
 }
-func (impl *TelemetryPlatformRepositoryImpl) GetAll() ([]Platform, error) {
-	var model []Platform
+func (impl *TelemetryPlatformRepositoryImpl) GetAll() ([]*Platform, error) {
+	var model []*Platform
 	err := impl.dbConnection.Model(&model).Order("updated_on desc").Select()
 	return model, err
 }

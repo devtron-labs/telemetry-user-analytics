@@ -57,7 +57,7 @@ func (impl *TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserA
 		dto.Id = model.Id
 
 		// total install count counter logic
-		modelHistory, err := impl.telemetryInstallHistoryRepository.GetById(1)
+		_, err := impl.telemetryInstallHistoryRepository.GetById(1)
 		if err != nil && err != pg.ErrNoRows {
 			impl.logger.Errorw("error while fetching telemetry from db", "error", err)
 			return nil, err
@@ -74,14 +74,7 @@ func (impl *TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserA
 				return nil, err
 			}
 		} else {
-			modelHistory.InstallCount = modelHistory.InstallCount + 1
-			modelHistory.ActivePlatform = modelHistory.ActivePlatform + 1
-			modelHistory.SuccessCount = modelHistory.SuccessCount + 1
-			modelHistory, err = impl.telemetryInstallHistoryRepository.UpdatePlatformHistory(modelHistory)
-			if err != nil {
-				impl.logger.Errorw("error while fetching telemetry from db", "error", err)
-				return nil, err
-			}
+			// todo-  call cron service
 		}
 
 	} else {
