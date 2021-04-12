@@ -44,6 +44,11 @@ func (impl *TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserA
 		model.DevtronVersion = dto.DevtronVersion
 		model.ServerVersion = dto.ServerVersion
 		model.CreatedOn = dto.Timestamp
+		model.Clusters = dto.Clusters
+		model.Environments = dto.Environments
+		model.NoOfProdApps = dto.NoOfProdApps
+		model.NoOfNonProdApps = dto.NoOfNonProdApps
+		model.Users = dto.Users
 		/*if dto.EventType == "STARTUP" {
 			model.CreatedOn = dto.Timestamp
 		} else if dto.EventType == "NORMAL" {

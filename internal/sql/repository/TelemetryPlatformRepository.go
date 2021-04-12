@@ -29,13 +29,18 @@ func NewTelemetryPlatformRepositoryImpl(dbConnection *pg.DB) *TelemetryPlatformR
 }
 
 type Platform struct {
-	TableName      struct{}  `sql:"platform"`
-	Id             int32     `sql:"id,pk"`
-	UPID           string    `sql:"upid,notnull"`
-	CreatedOn      time.Time `sql:"created_on"`
-	ModifiedOn     time.Time `sql:"modified_on"`
-	ServerVersion  string    `sql:"server_version"`
-	DevtronVersion string    `sql:"devtron_version"`
+	TableName       struct{}  `sql:"platform"`
+	Id              int32     `sql:"id,pk"`
+	UPID            string    `sql:"upid,notnull"`
+	CreatedOn       time.Time `sql:"created_on"`
+	ModifiedOn      time.Time `sql:"modified_on"`
+	ServerVersion   string    `sql:"server_version"`
+	DevtronVersion  string    `sql:"devtron_version"`
+	Clusters        int       `sql:"clusters"`
+	Environments    int       `sql:"environments"`
+	NoOfProdApps    int       `sql:"prod_apps"`
+	NoOfNonProdApps int       `sql:"non_prod_apps"`
+	Users           int       `sql:"users"`
 }
 
 func (impl *TelemetryPlatformRepositoryImpl) CreatePlatform(model *Platform) (*Platform, error) {
