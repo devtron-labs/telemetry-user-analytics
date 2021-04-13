@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	fmt.Println("hello")
 		app, err := InitializeApp()
 		if err != nil {
 			log.Panic(err)

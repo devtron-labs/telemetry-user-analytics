@@ -41,6 +41,7 @@ type Platform struct {
 	NoOfProdApps    int       `sql:"prod_apps"`
 	NoOfNonProdApps int       `sql:"non_prod_apps"`
 	Users           int       `sql:"users"`
+	EventType       string    `sql:"event_type"`
 }
 
 func (impl *TelemetryPlatformRepositoryImpl) CreatePlatform(model *Platform) (*Platform, error) {

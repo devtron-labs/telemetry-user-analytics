@@ -33,66 +33,65 @@ func NewTelemetryEventServiceImpl(logger *zap.SugaredLogger, telemetryPlatformRe
 }
 
 func (impl *TelemetryEventServiceImpl) CreatePlatform(dto *common.TelemetryUserAnalyticsDto) (*common.TelemetryUserAnalyticsDto, error) {
-	model, err := impl.telemetryPlatformRepository.GetByUPID(dto.UPID)
-	if err != nil && err != pg.ErrNoRows {
-		impl.logger.Errorw("error while fetching telemetry from db", "error", err)
-		return nil, err
-	}
-	if err == pg.ErrNoRows {
-		model := &repository.Platform{}
-		model.UPID = dto.UPID
-		model.DevtronVersion = dto.DevtronVersion
-		model.ServerVersion = dto.ServerVersion
-		model.CreatedOn = dto.Timestamp
-		model.Clusters = dto.Clusters
-		model.Environments = dto.Environments
-		model.NoOfProdApps = dto.NoOfProdApps
-		model.NoOfNonProdApps = dto.NoOfNonProdApps
-		model.Users = dto.Users
-		/*if dto.EventType == "STARTUP" {
-			model.CreatedOn = dto.Timestamp
-		} else if dto.EventType == "NORMAL" {
-			model.ModifiedOn = dto.Timestamp
-		}*/
-		model, err = impl.telemetryPlatformRepository.CreatePlatform(model)
-		if err != nil {
-			impl.logger.Errorw("error while fetching telemetry from db", "error", err)
-			return nil, err
-		}
-		dto.Id = model.Id
-
-		// total install count counter logic
-		_, err := impl.telemetryInstallHistoryRepository.GetById(1)
+	/*
+		model, err := impl.telemetryPlatformRepository.GetByUPID(dto.UPID)
 		if err != nil && err != pg.ErrNoRows {
 			impl.logger.Errorw("error while fetching telemetry from db", "error", err)
 			return nil, err
 		}
 		if err == pg.ErrNoRows {
-			modelHistory := &repository.PlatformInstallHistory{}
-			modelHistory.InstallCount = 1
-			modelHistory.SuccessCount = 1
-			modelHistory.FailCount = 0
-			modelHistory.ActivePlatform = 1
-			modelHistory, err = impl.telemetryInstallHistoryRepository.CreatePlatformHistory(modelHistory)
-			if err != nil {
-				impl.logger.Errorw("error while fetching telemetry from db", "error", err)
-				return nil, err
-			}
-		} else {
-			// todo-  call cron service
-		}
+	*/
+	model := &repository.Platform{}
+	model.UPID = dto.UPID
+	model.DevtronVersion = dto.DevtronVersion
+	model.ServerVersion = dto.ServerVersion
+	model.CreatedOn = dto.Timestamp
+	model.Clusters = dto.Clusters
+	model.Environments = dto.Environments
+	model.NoOfProdApps = dto.NoOfProdApps
+	model.NoOfNonProdApps = dto.NoOfNonProdApps
+	model.Users = dto.Users
+	model.EventType = dto.EventType
+	model, err := impl.telemetryPlatformRepository.CreatePlatform(model)
+	if err != nil {
+		impl.logger.Errorw("error while fetching telemetry from db", "error", err)
+		return nil, err
+	}
+	dto.Id = model.Id
 
-	} else {
-		model.DevtronVersion = dto.DevtronVersion
-		model.ServerVersion = dto.ServerVersion
-		model.ModifiedOn = dto.Timestamp
-		model, err := impl.telemetryPlatformRepository.UpdatePlatform(model)
+	// total install count counter logic
+	_, err = impl.telemetryInstallHistoryRepository.GetById(1)
+	if err != nil && err != pg.ErrNoRows {
+		impl.logger.Errorw("error while fetching telemetry from db", "error", err)
+		return nil, err
+	}
+	if err == pg.ErrNoRows {
+		modelHistory := &repository.PlatformInstallHistory{}
+		modelHistory.InstallCount = 1
+		modelHistory.SuccessCount = 1
+		modelHistory.FailCount = 0
+		modelHistory.ActivePlatform = 1
+		modelHistory, err = impl.telemetryInstallHistoryRepository.CreatePlatformHistory(modelHistory)
 		if err != nil {
 			impl.logger.Errorw("error while fetching telemetry from db", "error", err)
 			return nil, err
 		}
-		dto.Id = model.Id
+	} else {
+		// todo-  call cron service
 	}
+	/*
+		} else {
+			model.DevtronVersion = dto.DevtronVersion
+			model.ServerVersion = dto.ServerVersion
+			model.ModifiedOn = dto.Timestamp
+			model, err := impl.telemetryPlatformRepository.UpdatePlatform(model)
+			if err != nil {
+				impl.logger.Errorw("error while fetching telemetry from db", "error", err)
+				return nil, err
+			}
+			dto.Id = model.Id
+		}
+	*/
 	dto.Id = model.Id
 	return dto, nil
 }

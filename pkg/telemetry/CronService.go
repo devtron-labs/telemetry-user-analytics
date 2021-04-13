@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/devtron-labs/telemetry-user-analytics/internal/sql/repository"
 	"github.com/go-pg/pg"
-	"github.com/jasonlvhit/gocron"
 	"go.uber.org/zap"
 	"net/http"
 	"time"
@@ -29,8 +28,8 @@ func NewCronServiceImpl(logger *zap.SugaredLogger, telemetryPlatformRepository r
 		telemetryInstallHistoryRepository: telemetryInstallHistoryRepository,
 		client:                            client,
 	}
-	gocron.Every(5).Minute().Do(serviceImpl.Process)
-	<-gocron.Start()
+	//gocron.Every(1).().Do(serviceImpl.Process)
+	//<-gocron.Start()
 	return serviceImpl
 }
 
