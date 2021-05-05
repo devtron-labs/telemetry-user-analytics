@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/devtron-labs/telemetry-user-analytics/api"
-	"github.com/devtron-labs/telemetry-user-analytics/pubsub"
+	"github.com/devtron-labs/external-app-crawler/api"
+	"github.com/devtron-labs/external-app-crawler/pubsub"
 	"github.com/go-pg/pg"
 	"go.uber.org/zap"
 	"net/http"

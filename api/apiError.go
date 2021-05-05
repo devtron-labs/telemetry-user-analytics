@@ -2,7 +2,7 @@ package api
 
 import (
 	"encoding/json"
-	"github.com/devtron-labs/telemetry-user-analytics/internal/util"
+	"github.com/devtron-labs/external-app-crawler/internal/util"
 	"github.com/juju/errors"
 	"net/http"
 )

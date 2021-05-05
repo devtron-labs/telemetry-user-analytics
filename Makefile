@@ -13,17 +13,17 @@ include $(ENV_FILE)
 export
 
 build: clean wire
-	$(ENVVAR) GOOS=$(GOOS) go build -o telemetry-user-analytics
+	$(ENVVAR) GOOS=$(GOOS) go build -o external-app-crawler
 
 wire:
 	wire
 
 clean:
-	rm -f telemetry-user-analytics
+	rm -f external-app-crawler
 
 run: build
-	./telemetry-user-analytics
+	./external-app-crawler
 
 .PHONY: build
 docker-build-image:  build
-	 docker build -t telemetry-user-analytics:$(TAG) .
+	 docker build -t external-app-crawler:$(TAG) .

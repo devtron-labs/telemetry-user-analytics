@@ -2,8 +2,8 @@ package pubsub
 
 import (
 	"encoding/json"
-	"github.com/devtron-labs/telemetry-user-analytics/client"
-	"github.com/devtron-labs/telemetry-user-analytics/common"
+	"github.com/devtron-labs/external-app-crawler/client"
+	"github.com/devtron-labs/external-app-crawler/common"
 	"github.com/nats-io/stan"
 	"go.uber.org/zap"
 	"time"

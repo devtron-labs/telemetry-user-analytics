@@ -2,8 +2,7 @@ package api
 
 import (
 	"encoding/json"
-	"github.com/devtron-labs/telemetry-user-analytics/common"
-	"github.com/devtron-labs/telemetry-user-analytics/pkg/telemetry"
+	"github.com/devtron-labs/external-app-crawler/common"
 	"go.uber.org/zap"
 	"net/http"
 )
@@ -12,17 +11,14 @@ type RestHandler interface {
 	TelemetryEventReceiver(w http.ResponseWriter, r *http.Request)
 }
 
-func NewRestHandlerImpl(logger *zap.SugaredLogger,
-	telemetryEventService telemetry.TelemetryEventService) *RestHandlerImpl {
+func NewRestHandlerImpl(logger *zap.SugaredLogger) *RestHandlerImpl {
 	return &RestHandlerImpl{
-		logger:                logger,
-		telemetryEventService: telemetryEventService,
+		logger: logger,
 	}
 }
 
 type RestHandlerImpl struct {
-	logger                *zap.SugaredLogger
-	telemetryEventService telemetry.TelemetryEventService
+	logger *zap.SugaredLogger
 }
 type Response struct {
 	Code   int         `json:"code,omitempty"`
@@ -78,12 +74,7 @@ func (impl *RestHandlerImpl) TelemetryEventReceiver(w http.ResponseWriter, r *ht
 	}
 
 	impl.logger.Infow("req received for telemetry event", "req", telemetryEvent)
-	result, err := impl.telemetryEventService.CreatePlatform(&telemetryEvent)
-	if err != nil {
-		impl.logger.Errorw("err in process msg", "err", err)
-		impl.writeJsonResp(w, err, nil, http.StatusInternalServerError)
-		return
-	}
-	impl.logger.Debugw("save", "status", result)
-	impl.writeJsonResp(w, err, result, 200)
+
+	impl.logger.Debugw("save", "status", nil)
+	impl.writeJsonResp(w, err, "", 200)
 }

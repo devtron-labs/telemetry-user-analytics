@@ -3,13 +3,11 @@
 package main
 
 import (
-	"github.com/devtron-labs/telemetry-user-analytics/api"
-	"github.com/devtron-labs/telemetry-user-analytics/client"
-	"github.com/devtron-labs/telemetry-user-analytics/internal/logger"
-	"github.com/devtron-labs/telemetry-user-analytics/internal/sql"
-	"github.com/devtron-labs/telemetry-user-analytics/internal/sql/repository"
-	"github.com/devtron-labs/telemetry-user-analytics/pkg/telemetry"
-	"github.com/devtron-labs/telemetry-user-analytics/pubsub"
+	"github.com/devtron-labs/external-app-crawler/api"
+	"github.com/devtron-labs/external-app-crawler/client"
+	"github.com/devtron-labs/external-app-crawler/internal/logger"
+	"github.com/devtron-labs/external-app-crawler/internal/sql"
+	"github.com/devtron-labs/external-app-crawler/pubsub"
 	"github.com/google/wire"
 )
 
@@ -18,21 +16,12 @@ func InitializeApp() (*App, error) {
 		NewApp,
 		api.NewMuxRouter,
 		logger.NewSugardLogger,
-		logger.NewHttpClient,
 		sql.GetConfig,
 		sql.NewDbConnection,
 		api.NewRestHandlerImpl,
 		wire.Bind(new(api.RestHandler), new(*api.RestHandlerImpl)),
 		client.NewPubSubClient,
 		pubsub.NewNatSubscription,
-		telemetry.NewTelemetryEventServiceImpl,
-		wire.Bind(new(telemetry.TelemetryEventService), new(*telemetry.TelemetryEventServiceImpl)),
-		repository.NewTelemetryPlatformRepositoryImpl,
-		wire.Bind(new(repository.TelemetryPlatformRepository), new(*repository.TelemetryPlatformRepositoryImpl)),
-		repository.NewTelemetryInstallHistoryRepositoryImpl,
-		wire.Bind(new(repository.TelemetryInstallHistoryRepository), new(*repository.TelemetryInstallHistoryRepositoryImpl)),
-		telemetry.NewCronServiceImpl,
-		wire.Bind(new(telemetry.CronService), new(*telemetry.CronServiceImpl)),
 
 	)
 	return &App{}, nil

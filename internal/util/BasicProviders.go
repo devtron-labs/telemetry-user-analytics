@@ -44,23 +44,6 @@ func init() {
 	}
 }
 
-/*func modifyToSentryLogger(log *zap.Logger, DSN string, env string) *zap.SugaredLogger {
-	cfg := zapsentry.Configuration{
-		//when to send message to sentry
-		Tags: map[string]string{
-			"component": "system",
-		},
-		Level: zapcore.ErrorLevel,
-	}
-	core, err := zapsentry.NewCore(cfg, zapsentry.NewSentryClientFromDSNAndEnv(DSN, env))
-	//core.Enabled(zapcore.ErrorLevel)
-	//in case of err it will return noop core. so we can safely attach it
-	if err != nil {
-		log.Warn("failed to init zap", zap.Error(err))
-	}
-	return zapsentry.AttachCoreToLogger(core, log).Sugar()
-}*/
-
 func NewSugardLogger() *zap.SugaredLogger {
 	return logger
 }

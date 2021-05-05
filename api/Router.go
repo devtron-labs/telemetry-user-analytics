@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"github.com/devtron-labs/telemetry-user-analytics/pkg/telemetry"
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 	"net/http"
@@ -12,11 +11,10 @@ type MuxRouter struct {
 	logger      *zap.SugaredLogger
 	Router      *mux.Router
 	restHandler RestHandler
-	cronService telemetry.CronService
 }
 
-func NewMuxRouter(logger *zap.SugaredLogger, restHandler RestHandler, cronService telemetry.CronService) *MuxRouter {
-	return &MuxRouter{logger: logger, Router: mux.NewRouter(), restHandler: restHandler, cronService: cronService}
+func NewMuxRouter(logger *zap.SugaredLogger, restHandler RestHandler) *MuxRouter {
+	return &MuxRouter{logger: logger, Router: mux.NewRouter(), restHandler: restHandler}
 }
 
 func (r MuxRouter) Init() {
